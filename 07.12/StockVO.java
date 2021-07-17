@@ -21,7 +21,16 @@ public class StockVO {
 		totalcPrice = cPrice * ownStocks;
 		totalpPrice = pPrice * ownStocks;
 	}
-	
+	@Override
+	public String toString() {
+		String returnInfo = 
+				name + " => " + "수익률 :  " + String.format("%.2f%%", profitRatio)+"\n"+
+				"현재단가 : " + String.format("%,d", pPrice)+"\n"+
+				"매입단가 : " + String.format("%,d", cPrice)+"\n"+
+				"매입금액 : " + String.format("%,d", totalpPrice) ;
+		
+		return returnInfo;
+	}
 	
 	// # name
 	public String getName() {

@@ -71,7 +71,7 @@ public class StockDAO {
 			arStock.add(stockVO);
 			priceAsset += stockVO.getTotalpPrice();
 			nowAsset += stockVO.getTotalcPrice();
-			view();
+			System.out.println(stockVO);
 
 			System.out.print("\n계속 하시려면 Y 아니면 N : ");
 			endMsg = scanner.nextLine();
@@ -81,10 +81,10 @@ public class StockDAO {
 
 	// # 보기
 	public void view() {
-		float totalYeild = ((float) nowAsset - priceAsset) / priceAsset * 100;
-		String showPriceAsset = "총 매입금액 : " + String.format("%,d", priceAsset) + " 원";
-		String showNowAsset = "총 매입금액 : " + String.format("%,d", nowAsset) + " 원";
-		String showTotalYeild = "총 수익률 " + String.format("%.2f %%", totalYeild);
+		String showPriceAsset = "총 매입금액 : " + String.format("%,d", priceAsset) + " 원";	// 총 매입금액
+		String showNowAsset = "총 평가금액 : " + String.format("%,d", nowAsset) + " 원";		// 총 평가금액
+		String showTotalYeild = "총 수익률 " + String.format("%.2f %%",
+								((float) nowAsset - priceAsset) / priceAsset * 100);			// 총 수익률 포멧
 		if (arStock.size() == 0) {
 			System.out.println("보유한 주식이 없음.");
 		} else {
@@ -100,22 +100,18 @@ public class StockDAO {
 			case 1: // 전체 내용 공개
 				for (int i = 0; i < arStock.size(); i++) {
 					System.out.println("[" + (i + 1) + "]");
-					viewLittle(arStock.get(i));
+					System.out.println(arStock.get(i));
 				}
 				System.out.println();
-				System.out.println(showPriceAsset);
-				System.out.println(showNowAsset);
-				System.out.println(showTotalYeild);
+				System.out.println(showPriceAsset + "\n" + showNowAsset + "\n"+ showTotalYeild);
 				break;
 			case 2: // 전체 자산만
-				System.out.println(showPriceAsset);
-				System.out.println(showNowAsset);
-				System.out.println(showTotalYeild);
+				System.out.println(showPriceAsset + "\n" + showNowAsset + "\n"+ showTotalYeild);
 				break;
 			case 3: // 종목별루만
 				for (int i = 0; i < arStock.size(); i++) {
 					System.out.println("[" + (i + 1) + "]");
-					viewLittle(arStock.get(i));
+					System.out.println(arStock.get(i));
 				}
 				break;
 			default:
@@ -126,17 +122,6 @@ public class StockDAO {
 		System.out.println("===============================");
 	}
 
-	public void viewLittle(StockVO stockVO) {
-		String[] returnInfo = {
-				stockVO.getName() + " => " + "수익률 :  " + String.format("%.2f%%", stockVO.getProfitRatio()),
-				"현재단가 : " + String.format("%,d", stockVO.getpPrice()),
-				"매입단가 : " + String.format("%,d", stockVO.getcPrice()),
-				"매입금액 : " + String.format("%,d", stockVO.getTotalpPrice()) };
-
-		for (String string : returnInfo) {
-			System.out.println(string);
-		}
-	}
 
 	// # 삭제
 	public void delete() {
