@@ -10,14 +10,15 @@ import java.awt.TextField;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import javax.swing.ImageIcon;
+import javax.swing.ButtonGroup;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class CheckBoxExer extends JFrame implements ItemListener{
 	
-	Checkbox morning , launch, dinner;
+	JCheckBox morning , launch, dinner;
 	JPanel panel = new JPanel(new BorderLayout());
 	JPanel checkPanel = new JPanel();
 	JPanel centerPanel = new JPanel();
@@ -27,7 +28,8 @@ public class CheckBoxExer extends JFrame implements ItemListener{
 	TextField nameField = new TextField("이름 ");
 	Font font = new Font("나눔고딕", Font.PLAIN, 16);
 	
-	CheckboxGroup group = new CheckboxGroup();
+//	CheckboxGroup group = new CheckboxGroup();
+	ButtonGroup group = new ButtonGroup();
 	public CheckBoxExer() {
 		setTitle("CheckBox");
 		setBounds(400,200,500,400);
@@ -40,9 +42,13 @@ public class CheckBoxExer extends JFrame implements ItemListener{
 		topLabel.setFont(new Font("나눔고딕",Font.BOLD,24));
 		
 		
-		morning = new Checkbox("아침" , false , group);
-		launch = new Checkbox("점심", false , group);
-		dinner = new Checkbox("저녁", false , group);
+		morning = new JCheckBox("아침" , false);
+		launch = new JCheckBox("점심", false );
+		dinner = new JCheckBox("저녁", false) ;
+		
+		group.add(morning);
+		group.add(dinner);
+		group.add(launch);
 		
 		morning.setFont(font);
 		dinner.setFont(font);
@@ -88,15 +94,15 @@ public class CheckBoxExer extends JFrame implements ItemListener{
 	public void itemStateChanged(ItemEvent e) {
 		
 		String show = nameField.getText() + " 님이 ";
-		Checkbox checkbox = (Checkbox) e.getSource();
+		JCheckBox checkbox = (JCheckBox) e.getSource();
 		if(checkbox == morning) {
-			show += morning.getState() ? "아침" : "";
+			show += morning.isSelected() ? "아침" : "";
 		}
 		if(checkbox == launch) {
-			show += launch.getState() ? "점심" : "";
+			show += launch.isSelected() ? "점심" : "";
 		}
 		if(checkbox == dinner) {
-			show += dinner.getState() ? "저녁" : "";
+			show += dinner.isSelected() ? "저녁" : "";
 		}
 		
 		show += "식사를 하십니다.";
