@@ -1,12 +1,9 @@
 package com.leemanni.exercise;
 
 import java.awt.BorderLayout;
-import java.awt.Checkbox;
-import java.awt.CheckboxGroup;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.TextField;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
@@ -15,6 +12,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class CheckBoxExer extends JFrame implements ItemListener{
 	
@@ -25,7 +23,7 @@ public class CheckBoxExer extends JFrame implements ItemListener{
 	JLabel bottomLabel = new JLabel("식사하신 내용이 표시됩니다");
 	JLabel topLabel = new JLabel("오늘 식사하신 시간대를 체크하세요");
 	JLabel nameLabel = new JLabel("이름  ");
-	TextField nameField = new TextField("이름 ");
+	JTextField nameField = new JTextField("이름 ");
 	Font font = new Font("나눔고딕", Font.PLAIN, 16);
 	
 //	CheckboxGroup group = new CheckboxGroup();
@@ -65,7 +63,7 @@ public class CheckBoxExer extends JFrame implements ItemListener{
 		panel.add(bottomLabel,BorderLayout.SOUTH);
 		
 		nameLabel.setFont(font);
-		nameField.setPreferredSize(new Dimension(90,100));
+		nameField.setPreferredSize(new Dimension(90,30));
 		centerPanel.add(nameLabel);
 		centerPanel.add(nameField);
 		
